@@ -19,6 +19,7 @@ Win32 API 全部可用，只是外层多了一个包、一份清单、一次签�
 | 三架构 **x86 + x64 + ARM64** | 同一个 `NppPackaging_8.3.3.0_x86_x64_ARM64.msixbundle`，系统自动挑架构 | 已构建并验证（ARM64 原生 exe） |
 | **PerMonitorV2** DPI 感知 | 换一份 exe 清单 `dpiAware.PerMonitorV2.manifest`（构建开关） | 已构建 + WACK 通过 |
 | **右键菜单** `Edit with Notepad++` | 新增 `NppShellMsix.dll`（`IExplorerCommand`）+ 打包 COM **代理进程**（dllhost），清单 `com:SurrogateServer` + `desktop4:FileExplorerContextMenus` | Win10 实测出现并成功唤起；Win11 走同一份清单 |
+| **替换默认记事本** | IFEO `Debugger` → `wscript.exe` 跑 `npp-notepad-redirect.vbs`（纯脚本、**不闪控制台**），转发给 `npp.exe` 别名 | Win10 实测单文件/带空格/多文件/`cmd start` 全部正确打开且无控制台进程，见 §14 |
 
 ```
 PowerEditor\
@@ -518,3 +519,96 @@ powershell -ExecutionPolicy Bypass -File .\build-msix.ps1 -Sign -TargetPlatformV
 & 'C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\makeappx.exe' unpack `
     /p .\AppPackages\NppPackaging_8.3.3.0_Test\NppPackaging_8.3.3.0_x86_x64_ARM64.msixbundle /d $env:TEMP\npp-unpack /o
 ```
+
+---
+---
+
+## 14. 把默认记事本 `notepad.exe` 重定向到 MSIX 版
+
+### 14.1 为什么不能直接把 IFEO 指向包里的 exe
+
+```cmd
+reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\notepad.exe" ^
+  /v Debugger /t REG_SZ /d "\"C:\Program Files\WindowsApps\NotepadPlusPlus.MSIX_8.3.3.0_x64__54gzaac6bb4fr\Notepad++.exe\" -notepadStyleCmdline -z" /f
+```
+
+这条命令的值能写进去（读回来引号也是对的），但 `notepad.exe` 一定启动失败，三层原因：
+
+| # | 原因 | 实测证据 |
+| --- | --- | --- |
+| 1 | **`C:\Program Files\WindowsApps\` 里的 exe 不能被普通进程直接执行** | `Start-Process 'C:\Program Files\WindowsApps\NotepadPlusPlus.MSIX_8.3.3.0_x64__54gzaac6bb4fr\Notepad++.exe'` → `Access is denied`（管理员也一样）。包内二进制只能通过包激活机制启动 |
+| 2 | **路径含版本号 + 架构 + 发布者哈希** | 升级后变成 `..._8.3.4.0_x64__...`，脚本必然失效 |
+| 3 | **IFEO 会把 debuggee 路径追加进命令行** | 实际执行的是 `Notepad++.exe <固定参数> C:\Windows\System32\notepad.exe <原始参数>`，Notepad++ 于是去打开 `notepad.exe` 这个二进制 |
+
+补充：IFEO 机制本身是好的（把 `Debugger` 临时换成 `mspaint.exe`，`notepad.exe` 确实变成了画图），
+问题不在 IFEO，而在「目标」。
+
+### 14.2 正确做法：IFEO → 脚本宿主（VBS 不闪；cmd 兜底）
+
+```
+notepad.exe ──IFEO──▶ wscript.exe //nologo C:\ProgramData\NppMsixRedirect\npp-notepad-redirect.vbs
+                        ├─ 丢掉 IFEO 追加的 notepad.exe 参数
+                        └─ 其余参数原样转发给 %LOCALAPPDATA%\Microsoft\WindowsApps\npp.exe
+                           （即包清单里的 AppExecutionAlias）
+```
+
+两种宿主，装哪个由 `-Mode` 决定：
+
+| 模式 | Debugger 值 | 控制台 | 适用 |
+| --- | --- | --- | --- |
+| `-Mode vbs`（**默认**） | `"C:\Windows\System32\wscript.exe" //nologo "C:\ProgramData\NppMsixRedirect\npp-notepad-redirect.vbs"` | **完全不出现**（wscript 是 GUI 子系统，不建控制台） | Win10 全系、Win11（VBScript 已启用时） |
+| `-Mode cmd`（兜底） | `"C:\Windows\System32\cmd.exe" /c C:\ProgramData\NppMsixRedirect\npp-notepad-redirect.cmd` | 闪一下（几十毫秒） | VBScript 被裁掉/被策略禁用时 |
+
+```powershell
+cd PowerEditor\visual.net\Packaging
+powershell -ExecutionPolicy Bypass -File .\notepad-redirect.ps1 -Verify              # 安装 VBS 版 + 自检
+powershell -ExecutionPolicy Bypass -File .\notepad-redirect.ps1 -Mode cmd -Verify    # 换成 cmd 版
+powershell -ExecutionPolicy Bypass -File .\notepad-redirect.ps1 -Uninstall           # 还原系统记事本
+```
+
+脚本与宿主都放在 `%ProgramData%\NppMsixRedirect\`（无空格路径；cmd 模式的 `/c` 有剥首尾引号的老坑，
+无空格就不需要引号）。文件都是纯 ASCII（cmd 按 OEM 代码页读脚本）。
+
+**不闪是实测验证的，不是猜的**：`-Verify` 在拉起 `notepad.exe` 的同时以 50 ms 采样
+`cmd.exe` / `conhost.exe` 进程数，结果：
+
+| 模式 | 采样结果 | 结论 |
+| --- | --- | --- |
+| `vbs` | cmd/conhost 峰值 = 基线 | 没有创建控制台 → 不闪 |
+| `cmd` | cmd/conhost 峰值 6/13 | 出现控制台 → 闪一下（符合预期） |
+
+功能实测（VBS 模式，Win10 19044）：
+
+| 场景 | 结果 |
+| --- | --- |
+| `notepad.exe 文件.txt` | PASS：Notepad++ 打开该文件 |
+| `notepad.exe "带 空格的 目录\file one.txt"` | PASS |
+| `notepad.exe "file one.txt" "file two.txt"` | PASS：两个文件在同一实例里打开 |
+| `cmd /c start notepad.exe 文件.txt`（模拟第三方程序调用） | PASS |
+| `notepad.exe`（无参数） | 拉起 Notepad++（按它自己的「恢复上次会话」设置打开上次文档） |
+| `-Uninstall` | IFEO 键、脚本目录全清除；`wscript` 无残留进程 |
+
+### 14.3 这条路的坑
+
+* **`cmd.exe` 模式一定有控制台**（闪一下）：cmd 是控制台程序，`start ""` 只能让它尽早退出。
+  要彻底不闪就用默认的 `-Mode vbs`；`bat` 做不到"不闪"——`.bat` 必须由 cmd.exe 解释执行。
+* **VBScript 的未来**：从 Win11 24H2 起 VBScript 变成"按需功能"（默认仍启用，但可能被裁剪或被组策略
+  禁用）。`Test-Path $env:SystemRoot\System32\wscript.exe` 不存在时脚本会直接报错并提示改用 `-Mode cmd`。
+* **参数会被重新加引号**：VBS 用 `""" & arg & """`、cmd 用 `"%~1"` 重建命令行，普通文件路径没问题；
+  命令行里含内嵌引号、`^`、`&` 这类字符可能失真（记事本场景基本遇不到）。
+* **开关不翻译**：`notepad /p file`、`/pt` 会被原样转发，不会翻译成打印动作。
+* **不要加 `-notepadStyleCmdline`**：8.3.3 上实测它会让 Notepad++ 恢复上次会话、而不是打开传入的文件；
+  想要「记事本式」行为请在 Notepad++ 里关掉 `设置 > 首选项 > 备份 > Remember current session for next launch`。
+### 14.4 Windows 11 的原生做法（可选，连 .cmd 都不用）
+
+Win11 21H2（build 21313+）起，微软提供官方的「重定向到打包应用」机制：
+
+```
+HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\notepad.exe
+    AppExecutionAliasRedirect         = 1          (DWORD)
+    AppExecutionAliasRedirectPackages = NotepadPlusPlus.MSIX_54gzaac6bb4fr   (REG_SZ，或 *)
+```
+
+前提是包里声明了**名为 `notepad.exe`** 的 AppExecutionAlias（当前清单只有 `npp.exe`；
+一份 Application 只能有一个别名，换 `notepad.exe` 就得放弃 `npp.exe`）。
+Win10 19044 不支持该机制（要求 build 21313+），所以本仓库默认走 §14.2 的 .cmd 方案。
