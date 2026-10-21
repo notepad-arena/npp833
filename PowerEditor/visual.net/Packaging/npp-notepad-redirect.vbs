@@ -1,7 +1,7 @@
 ' ============================================================================
 '  Notepad++ MSIX: notepad.exe redirector, console-free variant (VBScript).
 '
-'  Installed by Packaging\notepad-redirect.ps1 to
+'  Installed by Packaging\replace-notepad.ps1 to
 '      C:\ProgramData\NppMsixRedirect\npp-notepad-redirect.vbs
 '  and registered as the Image File Execution Options "Debugger" of notepad.exe:
 '      HKLM\...\Image File Execution Options\notepad.exe
@@ -34,7 +34,13 @@ localAppData = shell.ExpandEnvironmentStrings("%LOCALAPPDATA%")
 aliasPath = localAppData & "\Microsoft\WindowsApps\npp.exe"
 
 If Not fso.FileExists(aliasPath) Then
-    WScript.Quit 3          ' package not installed, or the alias was disabled by the user
+    ' The package was removed (or the alias was disabled) but the IFEO redirect is still there.
+    ' Tell the user instead of failing silently. Do NOT start C:\Windows\System32\notepad.exe
+    ' here: IFEO would redirect it again and it would loop forever.
+    MsgBox "Notepad++ (MSIX package) is not installed, but notepad.exe is still redirected to it." & vbCrLf & vbCrLf & _
+           "Run restore-notepad.ps1 (PowerEditor\visual.net\Packaging) to get the default Notepad back.", _
+           vbExclamation, "Notepad++ MSIX"
+    WScript.Quit 3
 End If
 
 cmdLine = """" & aliasPath & """"

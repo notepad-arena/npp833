@@ -339,45 +339,31 @@ powershell -ExecutionPolicy Bypass -File .\build-msix.ps1 -Sign -Verify   # 报�
 
 ### 5.7 把默认记事本 `notepad.exe` 重定向到 MSIX 版
 
-**不能**把 IFEO 的 `Debugger` 直接指向包里的 exe：
-
-```cmd
-reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\notepad.exe" ^
-  /v Debugger /t REG_SZ /d "\"C:\Program Files\WindowsApps\NotepadPlusPlus.MSIX_8.3.3.0_x64__54gzaac6bb4fr\Notepad++.exe\"" /f
-```
-
-三层原因（本机逐条实测）：① `C:\Program Files\WindowsApps\` 内的 exe **不能被普通进程直接执行**
-（`Access is denied`，管理员也一样），包内二进制只能由包激活机制启动；② 路径含版本号/架构/发布者哈希，
-升级即失效；③ IFEO 会把 debuggee 路径（`C:\Windows\System32\notepad.exe`）追加进命令行，Notepad++
-会把 `notepad.exe` 当文档打开。IFEO 机制本身没问题（把 Debugger 换成 `mspaint.exe` 验证过）。
-
-正确做法：IFEO → 脚本宿主（**不需要编译任何 exe**）。脚本丢掉 IFEO 追加的 `notepad.exe` token，
-把其余参数转发给包的执行别名 `%LOCALAPPDATA%\Microsoft\WindowsApps\npp.exe`：
-
-```
-# 默认：wscript 是 GUI 子系统宿主，完全不产生控制台 —— 不闪
-Debugger = "C:\Windows\System32\wscript.exe" //nologo "C:\ProgramData\NppMsixRedirect\npp-notepad-redirect.vbs"
-
-# 兜底（VBScript 被裁掉/被策略禁用时）：cmd 会闪一下
-Debugger = "C:\Windows\System32\cmd.exe" /c C:\ProgramData\NppMsixRedirect\npp-notepad-redirect.cmd
-```
+三个文件、两个脚本：IFEO 把 `notepad.exe` 交给 `wscript` 跑 `npp-notepad-redirect.vbs`，
+vbs 丢掉 IFEO 追加的 `notepad.exe` 参数，其余转给包的执行别名 `npp.exe`。
 
 ```powershell
 cd PowerEditor\visual.net\Packaging
-powershell -ExecutionPolicy Bypass -File .\notepad-redirect.ps1 -Verify             # 安装 VBS 版 + 自检
-powershell -ExecutionPolicy Bypass -File .\notepad-redirect.ps1 -Mode cmd -Verify   # 改用 cmd 版
-powershell -ExecutionPolicy Bypass -File .\notepad-redirect.ps1 -Uninstall          # 还原系统记事本
+powershell -ExecutionPolicy Bypass -File .\replace-notepad.ps1 -Verify   # 替换成 Notepad++（含自检）
+powershell -ExecutionPolicy Bypass -File .\restore-notepad.ps1           # 还原系统记事本
 ```
 
-> `.bat` 做不到不闪：`.bat` 必须由 `cmd.exe` 解释，cmd 是控制台程序，窗口一定会被创建（哪怕只有几十毫秒）。
-> 要「零控制台」只能用 GUI 子系统的宿主：`wscript.exe`（VBS）或 `mshta.exe`，否则就得回到编译版启动器。
+```
+Debugger = "C:\Windows\System32\wscript.exe" //nologo "C:\ProgramData\NppMsixRedirect\npp-notepad-redirect.vbs"
+```
 
-`-Verify` 会在拉起 `notepad.exe` 的同时以 50 ms 采样 `cmd.exe`/`conhost.exe`，实测：vbs 模式峰值等于
-基线（无控制台），cmd 模式峰值 6/13（闪）。功能上单文件、带空格、多文件、`cmd /c start notepad.exe`、
-无参数全部正确；`-Uninstall` 后 IFEO 键与脚本目录全清。
-限制：`/p`、`/pt` 只转发不翻译；**不要**加 `-notepadStyleCmdline`（8.3.3 上会让它恢复上次会话）。
-Win11 21H2+ 可用官方免脚本方案（`AppExecutionAliasRedirect` + 别名 `notepad.exe`），见
-`Packaging/README.md` §14.4。
+要点：
+
+* **不能用 `cmd.exe`**：控制台程序，一定闪一下；`wscript` 是 GUI 子系统宿主，零闪。
+* **不能直接指向包里的 exe**：①包内 exe 被执行会被 AppModel 拦（`Access is denied`，管理员也一样）；
+  ②路径含版本号，升级即失效；③IFEO 会把 `notepad.exe` 路径追加成参数，N++ 会去打开它。
+* **vbs 不放包内**：包目录只读（TrustedInstaller）、路径版本化；放 `%ProgramData%` 才稳定。
+  详见 `Packaging/README.md` §14.5（含 ACL 实测：读可以、写不行、执行被拦）。
+* **升级不用重跑脚本**：vbs 走稳定的 `npp.exe` 别名，与包版本无关。
+
+实测（Win10 19044）：单文件 / 带空格 / 多文件 / `cmd /c start notepad.exe` / 无参数全部 PASS；
+`-Verify` 采样 `cmd.exe`+`conhost.exe` 峰值等于基线（确实不闪）；`restore` 后 IFEO 键与目录全清；
+包被删而 IFEO 残留时按 `notepad.exe` 会弹提示框，跑 `restore-notepad.ps1` 即恢复。
 ## 6. 验证清单
 
 ### 6.1 nsis 安装包（静默安装 → 检查 → 静默卸载）
@@ -431,7 +417,7 @@ App Paths、开始菜单快捷方式全部清除。
 | MSIX 打不出包 / 报 `.NET SDK 需要 MSBuild 18.0` | 装了 .NET 10 SDK，DesktopBridge targets 仍会 import `Microsoft.NET.Sdk` | 已在 wapproj 里 `<SkipImportNetSdk>true</SkipImportNetSdk>` |
 | MSIX `APPX0501` 各种 schema 报错 | 清单字段不合法（DN 里的 `+`、`#AARRGGBB`、`.bat` 关联等） | 见 `Packaging/README.md` §9 |
 | MSIX 装不上 `0x800B0109` / `0x80073CF0` | 证书没进 `TrustedPeople` / Publisher 与证书 Subject 不一致 | 重跑 `-CreateTestCert -TrustCert`；或对齐 Subject |
-| IFEO 重定向后 `notepad.exe` 打不开 / `Access is denied` | `Debugger` 指向了 `WindowsApps` 里的 exe，或直接给了包内路径 | 用 §5.7 的 `notepad-redirect.ps1`（IFEO → `cmd.exe /c` → .cmd） |
+| IFEO 重定向后 `notepad.exe` 打不开 / `Access is denied` | `Debugger` 指向了 `WindowsApps` 里的 exe（包内镜像被执行会被 AppModel 拦） | 用 §5.7 的 `replace-notepad.ps1`（IFEO → `wscript` → .vbs） |
 
 ---
 
@@ -465,8 +451,8 @@ App Paths、开始菜单快捷方式全部清除。
 | 10 | `PowerEditor\src\dpiAware.PerMonitorV2.manifest` | PerMonitorV2 清单（打包版用） |
 | 11 | `PowerEditor\src\tools\NppShellMsix\` | `NppExplorerCommand.h/.cpp`、`dllmain.cpp`、`NppShellMsix.def`、`NppShellMsix.vcxproj` |
 | 12 | `.gitignore` | 新增 MSIX 产物（`Packaging\{bin,obj,AppPackages}`、`*.pfx/*.cer`）与 `NppShellMsix` 产物忽略规则 |
-| 13 | `PowerEditor\visual.net\Packaging\npp-notepad-redirect.vbs` / `.cmd` | IFEO 重定向脚本：vbs（默认，不闪）与 cmd（兜底），都是参数过滤 + 转发给 `npp.exe` 别名，见 §5.7 |
-| 14 | `PowerEditor\visual.net\Packaging\notepad-redirect.ps1` | 安装/卸载/自检 IFEO 重定向（把 .cmd 装到 `%ProgramData%\NppMsixRedirect\`） |
+| 13 | `PowerEditor\visual.net\Packaging\npp-notepad-redirect.vbs` | IFEO 重定向脚本（wscript 宿主，零控制台；参数过滤 + 转发给 `npp.exe` 别名），见 §5.7 |
+| 14 | `PowerEditor\visual.net\Packaging\replace-notepad.ps1` / `restore-notepad.ps1` | 替换 / 还原系统记事本（自提权、幂等；vbs 装到 `%ProgramData%\NppMsixRedirect\`） |
 | 15 | `BUILD-VS2019-zh-CN.md`（本文） | 重写为完整构建笔记 |
 
 ### 8.4 已删除的 4 个工程（源码全部保留）
@@ -528,9 +514,8 @@ Get-AppxPackage NotepadPlusPlus.MSIX | Remove-AppxPackage
 
 # ---- 记事本重定向（IFEO）----
 cd $pkg
-powershell -ExecutionPolicy Bypass -File .\notepad-redirect.ps1 -Verify             # 安装 VBS 版并自检（需管理员）
-powershell -ExecutionPolicy Bypass -File .\notepad-redirect.ps1 -Mode cmd -Verify   # 改用 cmd 兜底版
-powershell -ExecutionPolicy Bypass -File .\notepad-redirect.ps1 -Uninstall          # 还原系统记事本
+powershell -ExecutionPolicy Bypass -File .\replace-notepad.ps1 -Verify   # 替换成 Notepad++（含自检，需管理员）
+powershell -ExecutionPolicy Bypass -File .\restore-notepad.ps1           # 还原系统记事本
 cd ..\..\..
 
 # ---- 复核改动 ----
