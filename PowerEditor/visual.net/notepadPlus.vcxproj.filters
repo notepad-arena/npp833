@@ -1,0 +1,1410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{D5C561D5-D061-470B-83B5-D8A8E94C1B7C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cursors">
+      <UniqueIdentifier>{9B8DEA60-3CDD-46CC-AC9A-9942AFCEF438}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DarkMode">
+      <UniqueIdentifier>{A3659D02-6AE4-4D2F-B978-DD318E906055}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\icons">
+      <UniqueIdentifier>{60576FA9-5AB3-4DCA-846E-66CD6130AE2C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\MISC">
+      <UniqueIdentifier>{1A4EC0B7-5219-4525-824B-72DBAF126A5B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\MISC\Common">
+      <UniqueIdentifier>{CBDA9E3C-2FE5-4305-8B2E-D415C0D9B0CD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\MISC\Exception">
+      <UniqueIdentifier>{672E7512-262D-46C6-9DA8-0ADDD7163F16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\MISC\md5">
+      <UniqueIdentifier>{A04D3D49-DB0D-48BF-81AE-4FFCCE27612A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\MISC\PluginsManager">
+      <UniqueIdentifier>{98C1AE14-38BB-4E67-9D6C-D8C38489FE76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\MISC\Process">
+      <UniqueIdentifier>{FAA70986-7BCB-4B62-8B5F-2BDE7250F4AA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\MISC\RegExt">
+      <UniqueIdentifier>{5AF4C60E-16FF-49C4-8B9A-812823DE1207}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\MISC\sha2">
+      <UniqueIdentifier>{6550E8A0-9049-4062-9BEF-A7FE0EBAFC78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ScintillaComponent">
+      <UniqueIdentifier>{84FB9BDD-335E-429C-BFC2-AFBEBDCB8262}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\TinyXml">
+      <UniqueIdentifier>{77DDCE44-BDFD-4677-9B7D-604E5563471C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\TinyXml\tinyXmlA">
+      <UniqueIdentifier>{8234751E-822A-4C0F-A5B2-07ECA35FA757}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\uchardet">
+      <UniqueIdentifier>{68D7BCD1-891B-4E1D-8373-C2CFDA378504}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls">
+      <UniqueIdentifier>{B4794409-8020-42BF-A666-210BEB3064A0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\AboutDlg">
+      <UniqueIdentifier>{D4BDACD3-940A-4817-AF39-0005BC16493F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\AnsiCharPanel">
+      <UniqueIdentifier>{D9D9D8C6-30DC-4763-A2A4-7A3DD57E4DCA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\ClipboardHistory">
+      <UniqueIdentifier>{8F5A1BBD-EF5E-4817-8D90-CBC407589B19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\ColourPicker">
+      <UniqueIdentifier>{34B0455C-147A-4914-BB91-26CEB6302952}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\ContextMenu">
+      <UniqueIdentifier>{E9F3BE66-8945-4BF7-ACBB-C519C2A7CA17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\DockingWnd">
+      <UniqueIdentifier>{524E5B82-026E-4F65-B960-A62C9070F037}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\DocumentMap">
+      <UniqueIdentifier>{6C1D8354-775F-4C4B-96D1-4688F27834DF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\FileBrowser">
+      <UniqueIdentifier>{326D5902-2C6A-431E-AAB5-5D54E8A98C2E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\FindCharsInRange">
+      <UniqueIdentifier>{799B6AFF-710F-4DA9-811B-BAB5E51CABC7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\FunctionList">
+      <UniqueIdentifier>{123D5F71-1B32-444C-A010-5614302A8213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\Grid">
+      <UniqueIdentifier>{8061BEBB-7CE4-4019-BC59-F46C434049DB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\ImageListSet">
+      <UniqueIdentifier>{5C272C0F-AB87-4C4A-9E14-C492CF374C2C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\OpenSaveFileDialog">
+      <UniqueIdentifier>{C191B78C-764B-47A2-9831-5D3D185E3406}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\PluginsAdmin">
+      <UniqueIdentifier>{D716E32A-8F4F-4D7E-8169-EF28BBFEB640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\Preference">
+      <UniqueIdentifier>{11F6BAEA-2EAF-4568-BF9E-8D1476655DE1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\ProjectPanel">
+      <UniqueIdentifier>{0E70CE67-688D-4D6B-90F3-EB308E9EB8E3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\ReadDirectoryChanges">
+      <UniqueIdentifier>{663DEDB4-38E6-4420-99BA-595BAD47405C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\shortcut">
+      <UniqueIdentifier>{14B83BB3-0C46-4D07-8F54-30F63788E5B8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\SplitterContainer">
+      <UniqueIdentifier>{F293A3B5-8997-40F3-8FCD-7E9EF5C1CE0E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\StaticDialog">
+      <UniqueIdentifier>{68DBC163-CE7E-4EBB-84B8-5D285C72899C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\StaticDialog\RunDlg">
+      <UniqueIdentifier>{461F43B0-DCB9-46A1-96A3-AECF2B1E9DC0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\StatusBar">
+      <UniqueIdentifier>{94DEF0DD-706B-4A5F-9566-9FA53BA1311A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\TabBar">
+      <UniqueIdentifier>{7895A012-06FB-4DF0-9F6A-267F996375FF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\TaskList">
+      <UniqueIdentifier>{576794AA-37C3-47B5-A498-EEC41FBB26B3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\ToolBar">
+      <UniqueIdentifier>{9B1FBBCC-953D-4317-A977-157E7CC076C4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\ToolTip">
+      <UniqueIdentifier>{D7EA7C2D-1CB1-49D0-B4A5-CE9586C73F25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\TrayIcon">
+      <UniqueIdentifier>{591D3C5E-0848-412F-8141-84BCF6E70B1A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\TreeView">
+      <UniqueIdentifier>{CC85ECE9-CEE3-4903-85FE-44D44B7A1053}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\VerticalFileSwitcher">
+      <UniqueIdentifier>{7521C45C-95DD-4BEE-A104-BFAAA1B320C0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\WinControls\WindowsDlg">
+      <UniqueIdentifier>{0E0688BF-31DA-4007-B3DF-644058CA4F55}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\DarkMode\DarkMode.cpp">
+      <Filter>src\DarkMode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MISC\Common\verifySignedfile.cpp">
+      <Filter>src\MISC\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MISC\md5\md5Dlgs.cpp">
+      <Filter>src\MISC\md5</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MISC\sha2\sha-256.cpp">
+      <Filter>src\MISC\sha2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\NppDarkMode.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\AboutDlg\AboutDlg.cpp">
+      <Filter>src\WinControls\AboutDlg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\AnsiCharPanel\ansiCharPanel.cpp">
+      <Filter>src\WinControls\AnsiCharPanel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ScintillaComponent\AutoCompletion.cpp">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\AnsiCharPanel\asciiListView.cpp">
+      <Filter>src\WinControls\AnsiCharPanel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\DocumentMap\documentSnapshot.cpp">
+      <Filter>src\WinControls\DocumentMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\Grid\BabyGrid.cpp">
+      <Filter>src\WinControls\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\Grid\BabyGridWrapper.cpp">
+      <Filter>src\WinControls\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ScintillaComponent\Buffer.cpp">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\CharDistribution.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\ClipboardHistory\clipboardHistoryPanel.cpp">
+      <Filter>src\WinControls\ClipboardHistory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\ColourPicker\ColourPicker.cpp">
+      <Filter>src\WinControls\ColourPicker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\ColourPicker\ColourPopup.cpp">
+      <Filter>src\WinControls\ColourPicker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ScintillaComponent\columnEditor.cpp">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MISC\Common\Common.cpp">
+      <Filter>src\MISC\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MISC\Common\FileInterface.cpp">
+      <Filter>src\MISC\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\ContextMenu\ContextMenu.cpp">
+      <Filter>src\WinControls\ContextMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\OpenSaveFileDialog\CustomFileDialog.cpp">
+      <Filter>src\WinControls\OpenSaveFileDialog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\PluginsAdmin\pluginsAdmin.cpp">
+      <Filter>src\WinControls\PluginsAdmin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\TabBar\ControlsTab.cpp">
+      <Filter>src\WinControls\TabBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\DockingWnd\DockingCont.cpp">
+      <Filter>src\WinControls\DockingWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\DockingWnd\DockingManager.cpp">
+      <Filter>src\WinControls\DockingWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\DockingWnd\DockingSplitter.cpp">
+      <Filter>src\WinControls\DockingWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ScintillaComponent\DocTabView.cpp">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\DocumentMap\documentMap.cpp">
+      <Filter>src\WinControls\DocumentMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\EncodingMapper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\FindCharsInRange\FindCharsInRange.cpp">
+      <Filter>src\WinControls\FindCharsInRange</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ScintillaComponent\FindReplaceDlg.cpp">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ScintillaComponent\FunctionCallTip.cpp">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\FunctionList\functionListPanel.cpp">
+      <Filter>src\WinControls\FunctionList</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\FunctionList\functionParser.cpp">
+      <Filter>src\WinControls\FunctionList</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ScintillaComponent\GoToLineDlg.cpp">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\DockingWnd\Gripper.cpp">
+      <Filter>src\WinControls\DockingWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MISC\PluginsManager\IDAllocator.cpp">
+      <Filter>src\MISC\PluginsManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\ImageListSet\ImageListSet.cpp">
+      <Filter>src\WinControls\ImageListSet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\JpCntx.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\LangBulgarianModel.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\LangCyrillicModel.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\LangGreekModel.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\LangHebrewModel.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\LangHungarianModel.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\LangThaiModel.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\lastRecentFileList.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\lesDlgs.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\AnsiCharPanel\ListView.cpp">
+      <Filter>src\WinControls\AnsiCharPanel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\localization.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MISC\Exception\MiniDumper.cpp">
+      <Filter>src\MISC\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Notepad_plus.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Notepad_plus_Window.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\NppBigSwitch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\NppCommands.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\NppIO.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\NppNotification.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsBig5Prober.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsCharSetProber.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsEscCharsetProber.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsEscSM.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsEUCJPProber.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsEUCKRProber.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsEUCTWProber.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsGB2312Prober.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsHebrewProber.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsLatin1Prober.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsMBCSGroupProber.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsMBCSSM.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsSBCharSetProber.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsSBCSGroupProber.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsSJISProber.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsUniversalDetector.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\nsUTF8Prober.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Parameters.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Misc\PluginsManager\PluginsManager.cpp">
+      <Filter>src\MISC\PluginsManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\Preference\preferenceDlg.cpp">
+      <Filter>src\WinControls\Preference</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ScintillaComponent\Printer.cpp">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MISC\Process\Processus.cpp">
+      <Filter>src\MISC\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\ProjectPanel\ProjectPanel.cpp">
+      <Filter>src\WinControls\ProjectPanel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MISC\RegExt\regExtDlg.cpp">
+      <Filter>src\MISC\RegExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\StaticDialog\RunDlg\RunDlg.cpp">
+      <Filter>src\WinControls\StaticDialog\RunDlg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\shortcut\RunMacroDlg.cpp">
+      <Filter>src\WinControls\shortcut</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ScintillaComponent\ScintillaCtrls.cpp">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ScintillaComponent\ScintillaEditView.cpp">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\shortcut\shortcut.cpp">
+      <Filter>src\WinControls\shortcut</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\Grid\ShortcutMapper.cpp">
+      <Filter>src\WinControls\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\TreeView\TreeView.cpp">
+      <Filter>src\WinControls\TreeView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\WindowsDlg\SizeableDlg.cpp">
+      <Filter>src\WinControls\WindowsDlg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ScintillaComponent\SmartHighlighter.cpp">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\SplitterContainer\Splitter.cpp">
+      <Filter>src\WinControls\SplitterContainer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\SplitterContainer\SplitterContainer.cpp">
+      <Filter>src\WinControls\SplitterContainer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\StaticDialog\StaticDialog.cpp">
+      <Filter>src\WinControls\StaticDialog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\StatusBar\StatusBar.cpp">
+      <Filter>src\WinControls\StatusBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\TabBar\TabBar.cpp">
+      <Filter>src\WinControls\TabBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\TaskList\TaskList.cpp">
+      <Filter>src\WinControls\TaskList</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\TaskList\TaskListDlg.cpp">
+      <Filter>src\WinControls\TaskList</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\TinyXml\tinystr.cpp">
+      <Filter>src\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\TinyXml\tinyXmlA\tinystrA.cpp">
+      <Filter>src\TinyXml\tinyXmlA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\TinyXml\tinyxml.cpp">
+      <Filter>src\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\TinyXml\tinyXmlA\tinyxmlA.cpp">
+      <Filter>src\TinyXml\tinyXmlA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\TinyXml\tinyxmlerror.cpp">
+      <Filter>src\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\TinyXml\tinyXmlA\tinyxmlerrorA.cpp">
+      <Filter>src\TinyXml\tinyXmlA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\TinyXml\tinyxmlparser.cpp">
+      <Filter>src\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\TinyXml\tinyXmlA\tinyxmlparserA.cpp">
+      <Filter>src\TinyXml\tinyXmlA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\ToolBar\ToolBar.cpp">
+      <Filter>src\WinControls\ToolBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\ToolTip\ToolTip.cpp">
+      <Filter>src\WinControls\ToolTip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\TrayIcon\trayIconControler.cpp">
+      <Filter>src\WinControls\TrayIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uchardet\uchardet.cpp">
+      <Filter>src\uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\AboutDlg\URLCtrl.cpp">
+      <Filter>src\WinControls\AboutDlg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ScintillaComponent\UserDefineDialog.cpp">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utf8_16.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\VerticalFileSwitcher\VerticalFileSwitcher.cpp">
+      <Filter>src\WinControls\VerticalFileSwitcher</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\VerticalFileSwitcher\VerticalFileSwitcherListView.cpp">
+      <Filter>src\WinControls\VerticalFileSwitcher</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MISC\Exception\Win32Exception.cpp">
+      <Filter>src\MISC\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\WindowsDlg\WindowsDlg.cpp">
+      <Filter>src\WinControls\WindowsDlg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\winmain.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\WindowsDlg\WinMgr.cpp">
+      <Filter>src\WinControls\WindowsDlg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\WindowsDlg\WinRect.cpp">
+      <Filter>src\WinControls\WindowsDlg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\ColourPicker\WordStyleDlg.cpp">
+      <Filter>src\WinControls\ColourPicker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ScintillaComponent\xmlMatchedTagsHighlighter.cpp">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\FileBrowser\fileBrowser.cpp">
+      <Filter>src\WinControls\FileBrowser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\ReadDirectoryChanges\ReadDirectoryChanges.cpp">
+      <Filter>src\WinControls\ReadDirectoryChanges</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\ReadDirectoryChanges\ReadDirectoryChangesPrivate.cpp">
+      <Filter>src\WinControls\ReadDirectoryChanges</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WinControls\ReadDirectoryChanges\ReadFileChanges.cpp">
+      <Filter>src\WinControls\ReadDirectoryChanges</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\clipboardFormats.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\DarkMode\DarkMode.h">
+      <Filter>src\DarkMode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\DarkMode\IatHook.h">
+      <Filter>src\DarkMode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\DarkMode\UAHMenuBar.h">
+      <Filter>src\DarkMode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\dpiManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\keys.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\localizationString.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\Common\Sorters.h">
+      <Filter>src\MISC\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\Common\verifySignedfile.h">
+      <Filter>src\MISC\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\md5\md5.h">
+      <Filter>src\MISC\md5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\md5\md5Dlgs.h">
+      <Filter>src\MISC\md5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\md5\md5Dlgs_rc.h">
+      <Filter>src\MISC\md5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\sha2\sha-256.h">
+      <Filter>src\MISC\sha2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\NppDarkMode.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\columnEditor_rc.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\FindReplaceDlg_rc.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\ScintillaRef.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Utf8.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\AboutDlg\AboutDlg.h">
+      <Filter>src\WinControls\AboutDlg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\AnsiCharPanel\ansiCharPanel.h">
+      <Filter>src\WinControls\AnsiCharPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\AutoCompletion.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\AnsiCharPanel\ansiCharPanel_rc.h">
+      <Filter>src\WinControls\AnsiCharPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\AnsiCharPanel\asciiListView.h">
+      <Filter>src\WinControls\AnsiCharPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ColourPicker\ColourPopupResource.h">
+      <Filter>src\WinControls\ColourPicker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ColourPicker\WordStyleDlgRes.h">
+      <Filter>src\WinControls\ColourPicker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\DocumentMap\documentMap_rc.h">
+      <Filter>src\WinControls\DocumentMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\DocumentMap\documentSnapshot.h">
+      <Filter>src\WinControls\DocumentMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\DocumentMap\documentSnapshot_rc.h">
+      <Filter>src\WinControls\DocumentMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\FindCharsInRange\findCharsInRange_rc.h">
+      <Filter>src\WinControls\FindCharsInRange</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\Grid\BabyGrid.h">
+      <Filter>src\WinControls\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\Grid\BabyGridWrapper.h">
+      <Filter>src\WinControls\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\Buffer.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\CharDistribution.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ClipboardHistory\clipboardHistoryPanel.h">
+      <Filter>src\WinControls\ClipboardHistory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ClipboardHistory\clipboardHistoryPanel_rc.h">
+      <Filter>src\WinControls\ClipboardHistory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\colors.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ColourPicker\ColourPicker.h">
+      <Filter>src\WinControls\ColourPicker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ColourPicker\ColourPopup.h">
+      <Filter>src\WinControls\ColourPicker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\columnEditor.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\Common\Common.h">
+      <Filter>src\MISC\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\Common\FileInterface.h">
+      <Filter>src\MISC\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ContextMenu\ContextMenu.h">
+      <Filter>src\WinControls\ContextMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\OpenSaveFileDialog\CustomFileDialog.h">
+      <Filter>src\WinControls\OpenSaveFileDialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\PluginsAdmin\pluginsAdmin.h">
+      <Filter>src\WinControls\PluginsAdmin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\PluginsAdmin\pluginsAdminRes.h">
+      <Filter>src\WinControls\PluginsAdmin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\Preference\preference_rc.h">
+      <Filter>src\WinControls\Preference</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ReadDirectoryChanges\targetver.h">
+      <Filter>src\WinControls\ReadDirectoryChanges</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\shortcut\shortcutRc.h">
+      <Filter>src\WinControls\shortcut</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\StaticDialog\RunDlg\RunDlg_rc.h">
+      <Filter>src\WinControls\StaticDialog\RunDlg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\TabBar\ControlsTab.h">
+      <Filter>src\WinControls\TabBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\DockingWnd\Docking.h">
+      <Filter>src\WinControls\DockingWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\DockingWnd\DockingCont.h">
+      <Filter>src\WinControls\DockingWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\DockingWnd\DockingDlgInterface.h">
+      <Filter>src\WinControls\DockingWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\DockingWnd\DockingManager.h">
+      <Filter>src\WinControls\DockingWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\DockingWnd\dockingResource.h">
+      <Filter>src\WinControls\DockingWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\DockingWnd\DockingSplitter.h">
+      <Filter>src\WinControls\DockingWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\DocTabView.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\DocumentMap\documentMap.h">
+      <Filter>src\WinControls\DocumentMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\EncodingMapper.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\FileNameStringSplitter.h">
+      <Filter>src\MISC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\FindCharsInRange\FindCharsInRange.h">
+      <Filter>src\WinControls\FindCharsInRange</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\FindReplaceDlg.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\FunctionCallTip.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\FunctionList\functionListPanel.h">
+      <Filter>src\WinControls\FunctionList</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\FunctionList\functionListPanel_rc.h">
+      <Filter>src\WinControls\FunctionList</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\FunctionList\functionParser.h">
+      <Filter>src\WinControls\FunctionList</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\GoToLineDlg.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\DockingWnd\Gripper.h">
+      <Filter>src\WinControls\DockingWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\PluginsManager\IDAllocator.h">
+      <Filter>src\MISC\PluginsManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ImageListSet\ImageListSet.h">
+      <Filter>src\WinControls\ImageListSet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\JpCntx.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\lastRecentFileList.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\lesDlgs.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\AnsiCharPanel\ListView.h">
+      <Filter>src\WinControls\AnsiCharPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\localization.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\menuCmdID.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\Exception\MiniDumper.h">
+      <Filter>src\MISC\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Notepad_plus.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\PluginsManager\Notepad_plus_msgs.h">
+      <Filter>src\MISC\PluginsManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Notepad_plus_Window.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsBig5Prober.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsCharSetProber.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsCodingStateMachine.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nscore.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsEscCharsetProber.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsEUCJPProber.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsEUCKRProber.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsEUCTWProber.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsGB2312Prober.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsHebrewProber.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsLatin1Prober.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsMBCSGroupProber.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsPkgInt.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsSBCharSetProber.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsSBCSGroupProber.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsSJISProber.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsUniversalDetector.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\nsUTF8Prober.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Parameters.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\PluginsManager\PluginInterface.h">
+      <Filter>src\MISC\PluginsManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\PluginsManager\PluginsManager.h">
+      <Filter>src\MISC\PluginsManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\Preference\preferenceDlg.h">
+      <Filter>src\WinControls\Preference</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\Printer.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\prmem.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\Process\Processus.h">
+      <Filter>src\MISC\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ProjectPanel\ProjectPanel.h">
+      <Filter>src\WinControls\ProjectPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ProjectPanel\ProjectPanel_rc.h">
+      <Filter>src\WinControls\ProjectPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\RegExt\regExtDlg.h">
+      <Filter>src\MISC\RegExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\RegExt\regExtDlgRc.h">
+      <Filter>src\MISC\RegExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\resource.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\StaticDialog\RunDlg\RunDlg.h">
+      <Filter>src\WinControls\StaticDialog\RunDlg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\shortcut\RunMacroDlg.h">
+      <Filter>src\WinControls\shortcut</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\shortcut\RunMacroDlg_rc.h">
+      <Filter>src\WinControls\shortcut</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\ScintillaCtrls.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\ScintillaEditView.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\shortcut\shortcut.h">
+      <Filter>src\WinControls\shortcut</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\Grid\ShortcutMapper.h">
+      <Filter>src\WinControls\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\Grid\ShortcutMapper_rc.h">
+      <Filter>src\WinControls\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\TreeView\TreeView.h">
+      <Filter>src\WinControls\TreeView</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\WindowsDlg\SizeableDlg.h">
+      <Filter>src\WinControls\WindowsDlg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\SmartHighlighter.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\SplitterContainer\Splitter.h">
+      <Filter>src\WinControls\SplitterContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\SplitterContainer\SplitterContainer.h">
+      <Filter>src\WinControls\SplitterContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\StaticDialog\StaticDialog.h">
+      <Filter>src\WinControls\StaticDialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\StatusBar\StatusBar.h">
+      <Filter>src\WinControls\StatusBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\TabBar\TabBar.h">
+      <Filter>src\WinControls\TabBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\TaskList\TaskList.h">
+      <Filter>src\WinControls\TaskList</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\TaskList\TaskListDlg.h">
+      <Filter>src\WinControls\TaskList</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\TaskList\TaskListDlg_rc.h">
+      <Filter>src\WinControls\TaskList</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\TinyXml\tinystr.h">
+      <Filter>src\TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\TinyXml\tinyXmlA\tinystrA.h">
+      <Filter>src\TinyXml\tinyXmlA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\TinyXml\tinyxml.h">
+      <Filter>src\TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\TinyXml\tinyXmlA\tinyxmlA.h">
+      <Filter>src\TinyXml\tinyXmlA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ToolBar\ToolBar.h">
+      <Filter>src\WinControls\ToolBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ToolTip\ToolTip.h">
+      <Filter>src\WinControls\ToolTip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\TrayIcon\trayIconControler.h">
+      <Filter>src\WinControls\TrayIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\uchardet\uchardet.h">
+      <Filter>src\uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\AboutDlg\URLCtrl.h">
+      <Filter>src\WinControls\AboutDlg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\UserDefineDialog.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\UserDefineLangReference.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\UserDefineResource.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Utf8_16.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\VerticalFileSwitcher\VerticalFileSwitcher.h">
+      <Filter>src\WinControls\VerticalFileSwitcher</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\VerticalFileSwitcher\VerticalFileSwitcher_rc.h">
+      <Filter>src\WinControls\VerticalFileSwitcher</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\VerticalFileSwitcher\VerticalFileSwitcherListView.h">
+      <Filter>src\WinControls\VerticalFileSwitcher</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MISC\Exception\Win32Exception.h">
+      <Filter>src\MISC\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\Window.h">
+      <Filter>src\WinControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\WindowsDlg\WindowsDlg.h">
+      <Filter>src\WinControls\WindowsDlg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\WindowsDlg\WindowsDlgRc.h">
+      <Filter>src\WinControls\WindowsDlg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\WindowsDlg\WinMgr.h">
+      <Filter>src\WinControls\WindowsDlg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ColourPicker\WordStyleDlg.h">
+      <Filter>src\WinControls\ColourPicker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ScintillaComponent\xmlMatchedTagsHighlighter.h">
+      <Filter>src\ScintillaComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rgba_icons.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\FileBrowser\fileBrowser.h">
+      <Filter>src\WinControls\FileBrowser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\FileBrowser\fileBrowser_rc.h">
+      <Filter>src\WinControls\FileBrowser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ReadDirectoryChanges\ReadDirectoryChanges.h">
+      <Filter>src\WinControls\ReadDirectoryChanges</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ReadDirectoryChanges\ReadDirectoryChangesPrivate.h">
+      <Filter>src\WinControls\ReadDirectoryChanges</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ReadDirectoryChanges\ThreadSafeQueue.h">
+      <Filter>src\WinControls\ReadDirectoryChanges</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WinControls\ReadDirectoryChanges\ReadFileChanges.h">
+      <Filter>src\WinControls\ReadDirectoryChanges</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\src\MISC\md5\md5Dlgs.rc">
+      <Filter>src\MISC\md5</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\AnsiCharPanel\ansiCharPanel.rc">
+      <Filter>src\WinControls\AnsiCharPanel</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\ClipboardHistory\clipboardHistoryPanel.rc">
+      <Filter>src\WinControls\ClipboardHistory</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\ColourPicker\ColourPopup.rc">
+      <Filter>src\WinControls\ColourPicker</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\ScintillaComponent\columnEditor.rc">
+      <Filter>src\ScintillaComponent</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\DockingWnd\DockingGUIWidget.rc">
+      <Filter>src\WinControls\DockingWnd</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\DocumentMap\documentMap.rc">
+      <Filter>src\WinControls\DocumentMap</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\DocumentMap\documentSnapshot.rc">
+      <Filter>src\WinControls\DocumentMap</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\FindCharsInRange\findCharsInRange.rc">
+      <Filter>src\WinControls\FindCharsInRange</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\ScintillaComponent\FindReplaceDlg.rc">
+      <Filter>src\ScintillaComponent</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\FunctionList\functionListPanel.rc">
+      <Filter>src\WinControls\FunctionList</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\Notepad_plus.rc">
+      <Filter>src</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\PluginsAdmin\pluginsAdmin.rc">
+      <Filter>src\WinControls\PluginsAdmin</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\Preference\preference.rc">
+      <Filter>src\WinControls\Preference</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\ProjectPanel\ProjectPanel.rc">
+      <Filter>src\WinControls\ProjectPanel</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\MISC\RegExt\regExtDlg.rc">
+      <Filter>src\MISC\RegExt</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\StaticDialog\RunDlg\RunDlg.rc">
+      <Filter>src\WinControls\StaticDialog\RunDlg</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\shortcut\RunMacroDlg.rc">
+      <Filter>src\WinControls\shortcut</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\shortcut\shortcut.rc">
+      <Filter>src\WinControls\shortcut</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\Grid\ShortcutMapper.rc">
+      <Filter>src\WinControls\Grid</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\TaskList\TaskListDlg.rc">
+      <Filter>src\WinControls\TaskList</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\ScintillaComponent\UserDefineDialog.rc">
+      <Filter>src\ScintillaComponent</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\VerticalFileSwitcher\VerticalFileSwitcher.rc">
+      <Filter>src\WinControls\VerticalFileSwitcher</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\WindowsDlg\WindowsDlg.rc">
+      <Filter>src\WinControls\WindowsDlg</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\ColourPicker\WordStyleDlg.rc">
+      <Filter>src\WinControls\ColourPicker</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\src\WinControls\FileBrowser\fileBrowser.rc">
+      <Filter>src\WinControls\FileBrowser</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\src\icons\allChars_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\allChars_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\closeAll.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\closefile.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\closeTabButton.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\closeTabButton_hover.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\closeTabButton_inact.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\closeTabButton_push.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\copy.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\cut.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\cut_dis.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\cut_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\cut_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\delete.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\dupli_dis.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\dupli_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\dupli_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\find.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\find_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\find_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\findrep_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\findrep_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\findReplace.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\findResult.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\imprim_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\imprim_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\indentGuide.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\indentGuide_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\indentGuide_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\invisibleChar.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\new_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\new_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\newFile.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\npp.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\open_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\open_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\openFile.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\paste.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\paste_dis.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\paste_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\paste_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\playRecord.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\playrecord_dis.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\playRecord_m.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\playrecord_m_dis.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\playrecord_m_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\playrecord_m_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\playrecord_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\playrecord_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\print.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\readonly.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\redo.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\redo_dis.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\redo_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\redo_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\save_dis.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\save_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\save_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\saveAll.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\saveall_dis.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\saveall_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\saveall_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\saved.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\saveFile.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\saveRecord.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\saverecord_dis.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\saverecord_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\saverecord_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\showPannel.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\startRecord.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\startrecord_dis.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\startrecord_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\startrecord_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\stopRecord.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\stoprecord_dis.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\stoprecord_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\stoprecord_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\supp_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\supp_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\suppall_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\suppall_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\syncH.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\syncH_dis.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\syncH_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\syncH_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\syncV.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\syncV_dis.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\syncV_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\syncV_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\undo.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\undo_dis.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\undo_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\undo_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\unsaved.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\userDefineDlg_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\userDefineDlg_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\wrap.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\wrap_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\wrap_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\zoomIn.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\zoomIn_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\zoomIn_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\zoomOut.bmp">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\zoomOut_off.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+    <Image Include="..\src\icons\zoomOut_on.ico">
+      <Filter>src\icons</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\cursors\drag.cur">
+      <Filter>src\cursors</Filter>
+    </None>
+    <None Include="..\src\cursors\drag_interdit.cur">
+      <Filter>src\cursors</Filter>
+    </None>
+    <None Include="..\src\cursors\drag_plus.cur">
+      <Filter>src\cursors</Filter>
+    </None>
+  </ItemGroup>
+</Project>
