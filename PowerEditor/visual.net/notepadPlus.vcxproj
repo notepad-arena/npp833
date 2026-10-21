@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|ARM64">
@@ -31,7 +31,13 @@
     <ProjectGuid>{FCF60E65-1B78-4D1D-AB59-4FC00AC8C248}</ProjectGuid>
     <RootNamespace>Notepad++</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+        <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <!--
+      DPI 感知清单可切换：默认保持上游行为（系统级 DPI）；MSIX 打包时传
+        /p:NppDpiManifest=..\src\dpiAware.PerMonitorV2.manifest
+      得到 PerMonitorV2。见 PowerEditor\visual.net\Packaging\README.md 的 DPI 一节。
+    -->
+    <NppDpiManifest Condition="'$(NppDpiManifest)' == ''">..\src\dpiAware.manifest</NppDpiManifest>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -159,7 +165,7 @@
       <AdditionalLibraryDirectories>..\..\scintilla\bin;$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
-      <AdditionalManifestFiles>..\src\dpiAware.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+      <AdditionalManifestFiles>$(NppDpiManifest);%(AdditionalManifestFiles)</AdditionalManifestFiles>
     </Manifest>
     <PostBuildEvent>
       <Command />
@@ -198,7 +204,7 @@
       <AdditionalLibraryDirectories>..\..\scintilla\bin;$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
-      <AdditionalManifestFiles>..\src\dpiAware.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+      <AdditionalManifestFiles>$(NppDpiManifest);%(AdditionalManifestFiles)</AdditionalManifestFiles>
     </Manifest>
     <PostBuildEvent>
       <Command>
@@ -237,7 +243,7 @@
       <AdditionalLibraryDirectories>..\..\scintilla\bin;$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
-      <AdditionalManifestFiles>..\src\dpiAware.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+      <AdditionalManifestFiles>$(NppDpiManifest);%(AdditionalManifestFiles)</AdditionalManifestFiles>
     </Manifest>
     <PostBuildEvent>
       <Command>
@@ -286,7 +292,7 @@
       <AdditionalLibraryDirectories>..\..\scintilla\bin;$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
-      <AdditionalManifestFiles>..\src\dpiAware.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+      <AdditionalManifestFiles>$(NppDpiManifest);%(AdditionalManifestFiles)</AdditionalManifestFiles>
     </Manifest>
     <PostBuildEvent>
       <Command>
@@ -338,7 +344,7 @@ copy ..\src\contextMenu.xml ..\bin\contextMenu.xml
       <AdditionalLibraryDirectories>..\..\scintilla\bin;$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
-      <AdditionalManifestFiles>..\src\dpiAware.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+      <AdditionalManifestFiles>$(NppDpiManifest);%(AdditionalManifestFiles)</AdditionalManifestFiles>
     </Manifest>
     <PostBuildEvent>
       <Command>
@@ -389,7 +395,7 @@ copy ..\src\contextMenu.xml ..\bin64\contextMenu.xml
       <AdditionalLibraryDirectories>..\..\scintilla\bin;$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
-      <AdditionalManifestFiles>..\src\dpiAware.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+      <AdditionalManifestFiles>$(NppDpiManifest);%(AdditionalManifestFiles)</AdditionalManifestFiles>
     </Manifest>
     <PostBuildEvent>
       <Command>

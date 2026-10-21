@@ -1,0 +1,12 @@
+; This file is part of Notepad++ project
+; Copyright (C)2021 Don HO <don.h@free.fr>
+;
+; Exports the two functions the packaged COM surrogate (dllhost.exe) looks for.
+; They are aliased to NppDll* because combaseapi.h declares the canonical names with
+; DECLSPEC_IMPORT, which makes a direct definition fail with C2375.
+
+LIBRARY NppShellMsix
+
+EXPORTS
+    DllGetClassObject=NppDllGetClassObject PRIVATE
+    DllCanUnloadNow=NppDllCanUnloadNow PRIVATE

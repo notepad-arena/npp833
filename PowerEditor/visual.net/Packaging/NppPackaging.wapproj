@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Notepad++ MSIX 打包工程（Windows Application Packaging Project / "Desktop Bridge"）
+  =============================================================================
+  用途：把现有的 Win32 版 Notepad++ 打进 MSIX / MSIXBundle，不改程序本身。
+  架构：x86 (Win32) + x64 + ARM64（三架构 bundle，Win11 on ARM 可原生运行）。
+  环境：VS2019 16.x（"通用 Windows 平台开发" 工作负载或 MSIX Packaging Tools 组件）或 VS2022。
+
+  命令行：见 build-msix.ps1，或
+    msbuild NppPackaging.wapproj /p:Configuration=Release /p:Platform=x86 ^
+            /p:AppxBundle=Always /p:AppxBundlePlatforms="x86|x64"
+
+  几个和普通 VS 模板不同的地方（都踩过坑，别随便删）：
+    1. EntryPointExe：C++ 工程的 BuiltProjectOutputGroup 只给 FinalOutputPath、不给
+       TargetPath，DesktopBridge 的 CreateWapProjPackageFiles 因此认不出"哪个是主程序"，
+       会报 "项目必须具有对应用程序的引用"。显式给 EntryPointExe 即可。
+    2. ProjectReference 用 Private=False：C++ 输出缺少 TargetPath，WAP 会把它们塞进一个
+       以工程名命名的子目录（notepadPlus\），还会顺带把 33MB 的 .pdb 打进去。
+       所以改成"引用只为构建顺序，负载由下面的 Content 精确摆放"。
+    3. _ResolveVCLibDependencies 置空：Notepad++ 是静态 CRT（MultiThreaded），不需要
+       Microsoft.VCLibs 框架包依赖；否则侧载时会因为机器上没有该框架包而装不上。
+    4. SkipImportNetSdk：本工程不用 PackageReference，禁用 DesktopBridge.targets 里对
+       Microsoft.NET.Sdk 的导入，避免新装 .NET SDK（10.x）导致 "MSBuild 版本太低" 报错。
+-->
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '15.0'">
+    <VisualStudioVersion>15.0</VisualStudioVersion>
+  </PropertyGroup>
+
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <WapProjPath Condition="'$(WapProjPath)' == ''">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
+  </PropertyGroup>
+
+  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
+
+  <PropertyGroup>
+    <ProjectGuid>{5A2EDF5B-3B7E-4C4B-9C2C-4E0F0F5D0C11}</ProjectGuid>
+    <ProjectName>NppPackaging</ProjectName>
+    <RootNamespace>NppPackaging</RootNamespace>
+    <OutDir>$(MSBuildThisFileDirectory)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(MSBuildThisFileDirectory)obj\$(Platform)\$(Configuration)\</IntDir>
+
+    <!--
+      与 notepadPlus.vcxproj 保持一致：SDK 10.0.19041.0。
+      想声明"已测 Win11 / 用 Win11 SDK 打包"时，装好新 SDK 后命令行传
+        /p:NppTargetPlatformVersion=10.0.22621.0
+      即可，不必改本文件；同时记得把 Package.appxmanifest 的 MaxVersionTested 一起抬。
+      注意：TargetPlatformMinVersion 是"能装上的最低系统"，它就是 Win10 兼容的底线，
+      不要为了 Win11 抬高它（MSIX 从 Win10 1809 / 17763 起支持）。
+    -->
+    <NppTargetPlatformVersion Condition="'$(NppTargetPlatformVersion)' == ''">10.0.19041.0</NppTargetPlatformVersion>
+    <TargetPlatformVersion>$(NppTargetPlatformVersion)</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+
+    <!-- 主程序（位于包根目录） -->
+    <EntryPointExe>Notepad++.exe</EntryPointExe>
+
+    <!-- 三架构：x86 + x64 + ARM64 -->
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|ARM64</AppxBundlePlatforms>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxPackageDir>$(MSBuildThisFileDirectory)AppPackages\</AppxPackageDir>
+
+    <!-- 签名由 build-msix.ps1 用 signtool 完成；VS 内调试可改 True 并配
+         PackageCertificateKeyFile / PackageCertificateThumbprint -->
+    <AppxPackageSigningEnabled>False</AppxPackageSigningEnabled>
+    <GenerateAppxPackageOnBuild>True</GenerateAppxPackageOnBuild>
+    <GenerateTestArtifacts>False</GenerateTestArtifacts>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <AppxUseHardlinksIfPossible>False</AppxUseHardlinksIfPossible>
+    <SkipImportNetSdk>true</SkipImportNetSdk>
+  </PropertyGroup>
+
+  <!-- Debug 只出单架构 .msix，加快本地迭代 -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <AppxBundle>Never</AppxBundle>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+
+  <!-- 图标：尺寸必须与 manifest 里声明的 100% 缩放一致（由 make-assets.ps1 生成） -->
+  <ItemGroup>
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Square44x44Logo.png" />
+    <Content Include="Assets\Square150x150Logo.png" />
+    <Content Include="Assets\Wide310x150Logo.png" />
+    <Content Include="Assets\SplashScreen.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256_altform-unplated.png" />
+  </ItemGroup>
+
+  <!-- 主程序：平台相关的输出目录（Release|Win32 -> ..\bin，Release|x64 -> ..\bin64） -->
+  <ItemGroup>
+    <Content Include="..\..\bin\Notepad++.exe" Condition="'$(Platform)' == 'x86'">
+      <Link>Notepad++.exe</Link>
+    </Content>
+    <Content Include="..\..\bin64\Notepad++.exe" Condition="'$(Platform)' == 'x64'">
+      <Link>Notepad++.exe</Link>
+    </Content>
+    <Content Include="..\..\binarm64\Notepad++.exe" Condition="'$(Platform)' == 'ARM64'">
+      <Link>Notepad++.exe</Link>
+    </Content>
+
+    <!-- 右键菜单处理器（进程外 COM，由 dllhost.exe 承载；见 Package.appxmanifest 的 com:SurrogateServer） -->
+    <Content Include="..\..\bin\NppShellMsix.dll" Condition="'$(Platform)' == 'x86'">
+      <Link>NppShellMsix.dll</Link>
+    </Content>
+    <Content Include="..\..\bin64\NppShellMsix.dll" Condition="'$(Platform)' == 'x64'">
+      <Link>NppShellMsix.dll</Link>
+    </Content>
+    <Content Include="..\..\binarm64\NppShellMsix.dll" Condition="'$(Platform)' == 'ARM64'">
+      <Link>NppShellMsix.dll</Link>
+    </Content>
+  </ItemGroup>
+
+  <!--
+    只读运行时数据。Notepad++ 从自身目录读取这些 XML（Notepad_plus_Window.cpp 里的
+    "localization\\"、"themes\\" 查找逻辑），打进包正合适（包目录只读）。
+    注意：不要把 doLocalConf.xml 打进去，否则程序会尝试往只读的安装目录写配置。
+  -->
+  <ItemGroup>
+    <Content Include="..\..\src\langs.model.xml">
+      <Link>langs.model.xml</Link>
+    </Content>
+    <Content Include="..\..\src\stylers.model.xml">
+      <Link>stylers.model.xml</Link>
+    </Content>
+    <Content Include="..\..\src\shortcuts.xml">
+      <Link>shortcuts.xml</Link>
+    </Content>
+    <Content Include="..\..\src\contextMenu.xml">
+      <Link>contextMenu.xml</Link>
+    </Content>
+    <Content Include="..\..\..\LICENSE">
+      <Link>LICENSE</Link>
+    </Content>
+
+    <Content Include="..\..\installer\nativeLang\*.xml">
+      <Link>localization\%(Filename)%(Extension)</Link>
+    </Content>
+    <Content Include="..\..\installer\themes\*.xml">
+      <Link>themes\%(Filename)%(Extension)</Link>
+    </Content>
+    <Content Include="..\..\installer\functionList\*.xml">
+      <Link>functionList\%(Filename)%(Extension)</Link>
+    </Content>
+    <Content Include="..\..\installer\APIs\*.xml">
+      <Link>APIs\%(Filename)%(Extension)</Link>
+    </Content>
+  </ItemGroup>
+
+  <!-- 只为构建顺序与依赖分析；负载见上面的 Content（原因见文件头注释 2） -->
+  <ItemGroup>
+    <ProjectReference Include="..\notepadPlus.vcxproj">
+      <Private>False</Private>
+      <Visible>True</Visible>
+    </ProjectReference>
+  </ItemGroup>
+
+  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
+
+  <!-- 静态 CRT，无需 Microsoft.VCLibs 框架包依赖（见文件头注释 3） -->
+  <Target Name="_ResolveVCLibDependencies" />
+
+  <!--
+    被引用的 C++ 工程输出会被 DesktopBridge 任务塞到 notepadPlus\ 子目录（还带 .pdb），
+    而主程序已由上面的 Content 精确放到包根目录，这里把这些重复负载项丢掉。
+  -->
+  <Target Name="_NppDropReferencedAppPayload" AfterTargets="_ExpandProjectReferences">
+    <ItemGroup>
+      <_FilteredNonWapProjProjectOutput Remove="@(_FilteredNonWapProjProjectOutput)" Condition="'%(_FilteredNonWapProjProjectOutput.SourceProject)' == 'notepadPlus'" />
+    </ItemGroup>
+    <Message Importance="low" Text="NppDropReferencedAppPayload: remaining payload = @(_FilteredNonWapProjProjectOutput->'%(SourceProject)')" />
+  </Target>
+
+</Project>

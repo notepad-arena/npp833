@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<!--
+  DPI awareness manifest: PerMonitorV2 (opt-in, used by the MSIX package build).
+
+  Notepad++.vcxproj picks this file instead of dpiAware.manifest when you build with
+      msbuild ... /p:NppDpiManifest=..\src\dpiAware.PerMonitorV2.manifest
+  (PowerEditor\visual.net\Packaging\build-msix.ps1 -DpiAwareness permonitorv2 does it for you).
+
+  Both settings blocks are declared on purpose:
+    * SMI/2005  dpiAware=true/pm   -> fallback for Windows 8.1 / early Windows 10
+    * SMI/2016  dpiAwareness=PerMonitorV2, PerMonitor -> Windows 10 1703+ / Windows 11
+
+  Known limitation of the app (not of the package): Notepad++ does not re-layout its UI in
+  WM_DPICHANGED (see NppBigSwitch.cpp, the handler just returns TRUE), so when the window is
+  dragged to a monitor with a different scale factor the UI keeps its old pixel metrics. It is
+  internally consistent and crisp, just physically smaller/larger than the target monitor's
+  scale. Under the default <dpiAware>true</dpiAware> the same move makes Windows bitmap-stretch
+  the window instead (correct physical size, slightly blurry).
+
+  Pick with: build-msix.ps1 -DpiAwareness system | permonitorv2
+-->
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <asmv3:application xmlns:asmv3="urn:schemas-microsoft-com:asm.v3">
+    <asmv3:windowsSettings
+         xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">
+      <dpiAware>true/pm</dpiAware>
+    </asmv3:windowsSettings>
+    <asmv3:windowsSettings
+         xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">
+      <dpiAwareness>PerMonitorV2, PerMonitor</dpiAwareness>
+    </asmv3:windowsSettings>
+  </asmv3:application>
+</assembly>

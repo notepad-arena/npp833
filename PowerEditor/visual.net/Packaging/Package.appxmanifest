@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Notepad++ MSIX package manifest.
+  Key points:
+    * EntryPoint="Windows.FullTrustApplication" + rescap:runFullTrust
+      => Notepad++.exe runs with full trust (NOT in an AppContainer), all Win32 APIs available.
+    * Identity/@Publisher MUST match the signing certificate subject exactly,
+      otherwise install fails with 0x800B0109 / 0x80073CF0.
+    * Keep this file ASCII-only if you ever edit it with Windows PowerShell 5.1 tools:
+      Get-Content reads BOM-less UTF-8 as ANSI and corrupts non-ASCII text.
+-->
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap uap3 desktop com desktop4 rescap">
+
+  <Identity
+    Name="NotepadPlusPlus.MSIX"
+    Publisher="CN=NppMSIXDev"
+    Version="8.3.3.0" />
+
+  <Properties>
+    <DisplayName>Notepad++</DisplayName>
+    <PublisherDisplayName>Npp MSIX Dev</PublisherDisplayName>
+    <Description>Notepad++ (MSIX packaged build, GPLv3)</Description>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <!--
+      MinVersion = 装不上的硬下限。MSIX 包格式从 Windows 10 1809 (10.0.17763) 起才支持，
+      所以 Win10 1809/1903/1909/2004/20H2/21H1/21H2/22H2 和 Win11 全系都用这同一份包。
+      MaxVersionTested 只是"声明在哪个版本上验证过"，不限制安装与运行；这里是本机的
+      Win10 21H2 SDK (10.0.19041)。若要声明"已测 Win11 22H2"：装 Win11 SDK 后，把本文件的
+      MaxVersionTested 与 .wapproj 的 TargetPlatformVersion 一起抬到 10.0.22621.0。
+    -->
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="en-US" />
+  </Resources>
+
+  <Applications>
+    <Application Id="NotepadPlusPlus" Executable="Notepad++.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements
+        DisplayName="Notepad++"
+        Description="Notepad++ (MSIX packaged build)"
+        BackgroundColor="transparent"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#1E1E1E" />
+      </uap:VisualElements>
+
+      <Extensions>
+        <!--
+          File associations: MSIX never silently steals default handlers. The user still has to
+          pick Notepad++ in Settings > Apps > Default apps for .txt and friends.
+        -->
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="notepadplusplus.text">
+            <uap:DisplayName>Text Document</uap:DisplayName>
+            <uap:Logo>Assets\Square44x44Logo.png</uap:Logo>
+            <uap:SupportedFileTypes>
+              <uap:FileType>.txt</uap:FileType>
+              <uap:FileType>.log</uap:FileType>
+              <uap:FileType>.ini</uap:FileType>
+              <uap:FileType>.inf</uap:FileType>
+              <uap:FileType>.nfo</uap:FileType>
+              <uap:FileType>.md</uap:FileType>
+              <uap:FileType>.json</uap:FileType>
+              <uap:FileType>.xml</uap:FileType>
+              <uap:FileType>.yml</uap:FileType>
+              <uap:FileType>.yaml</uap:FileType>
+              <uap:FileType>.cpp</uap:FileType>
+              <uap:FileType>.c</uap:FileType>
+              <uap:FileType>.h</uap:FileType>
+              <uap:FileType>.hpp</uap:FileType>
+              <uap:FileType>.py</uap:FileType>
+              <uap:FileType>.ps1</uap:FileType>
+              <uap:FileType>.sql</uap:FileType>
+              <uap:FileType>.csv</uap:FileType>
+              <uap:FileType>.css</uap:FileType>
+              <uap:FileType>.js</uap:FileType>
+              <uap:FileType>.diff</uap:FileType>
+              <uap:FileType>.patch</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+
+        <!-- Command line alias: after install, `npp.exe file.txt` works from any shell -->
+        <uap3:Extension Category="windows.appExecutionAlias"
+                        Executable="Notepad++.exe"
+                        EntryPoint="Windows.FullTrustApplication">
+          <uap3:AppExecutionAlias>
+            <desktop:ExecutionAlias Alias="npp.exe" />
+          </uap3:AppExecutionAlias>
+        </uap3:Extension>
+
+        <!--
+          Context menu handler.
+            * com:SurrogateServer = the DLL runs inside dllhost.exe (OUT OF PROCESS).
+              MSIX forbids in-process shell extensions, so the classic NppShell.dll style
+              registration is not possible.
+            * desktop4:FileExplorerContextMenus = Windows 10 1903+ classic menu; on Windows 11
+              it appears in the new top level menu / "Show more options". Older Windows 10
+              simply ignores it, because the namespace is listed in IgnorableNamespaces.
+            * Clsid / AppId must match CNppExplorerCommand's uuid in
+              PowerEditor\src\tools\NppShellMsix\NppExplorerCommand.h
+        -->
+        <com:Extension Category="windows.comServer">
+          <com:ComServer>
+            <com:SurrogateServer AppId="8E1B0F5C-1E8B-4D3A-9A2C-5B7E9C4C2A11" DisplayName="Notepad++ shell handler">
+              <com:Class Id="8E1B0F5C-1E8B-4D3A-9A2C-5B7E9C4C2A11" Path="NppShellMsix.dll" ThreadingModel="Both" />
+            </com:SurrogateServer>
+          </com:ComServer>
+        </com:Extension>
+
+        <desktop4:Extension Category="windows.fileExplorerContextMenus">
+          <desktop4:FileExplorerContextMenus>
+            <desktop4:ItemType Type="*">
+              <desktop4:Verb Id="NppEdit" Clsid="8E1B0F5C-1E8B-4D3A-9A2C-5B7E9C4C2A11" />
+            </desktop4:ItemType>
+          </desktop4:FileExplorerContextMenus>
+        </desktop4:Extension>
+
+        <!--
+          === Rules for adding Win11-only extensions later ===
+
+          Everything above uses uap / uap3 / desktop / com / desktop4 / rescap, all of which are
+          either understood by Windows 10 1809+ or listed in IgnorableNamespaces - that is why
+          ONE package installs on both Windows 10 and Windows 11.
+
+          If you add a newer Windows 11 feature (desktop5 / desktop6 / uap10 ...):
+            1) put the prefix into IgnorableNamespaces on <Package>, otherwise Windows 10
+               fails installation with APPX0501;
+            2) keep shell extensions out of process (com:Extension, surrogate or exe server);
+            3) re-run build-msix.ps1 -Sign -Verify on Windows 10 after the change.
+
+          Reference: https://learn.microsoft.com/windows/apps/desktop/modernize/desktop-extensions
+        -->
+      </Extensions>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <!-- Required for a full-trust desktop app -->
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+</Package>

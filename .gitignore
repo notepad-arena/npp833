@@ -239,3 +239,26 @@ PowerEditor/src/MISC/md5/RCa06792
 #     如需分发请走 GitHub Releases 附件。
 #  3. 本目录不是 git 仓库原始状态，构建相关的改造记录见 BUILD-VS2019-zh-CN.md。
 # ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# ## MSIX 打包产物（PowerEditor\visual.net\Packaging，见该目录 README.md）
+#    图标 Assets\*.png 要进库，其余构建/签名产物不进库
+# ------------------------------------------------------------------------------
+PowerEditor/visual.net/Packaging/bin/
+PowerEditor/visual.net/Packaging/obj/
+PowerEditor/visual.net/Packaging/AppPackages/
+PowerEditor/visual.net/Packaging/*.pfx
+PowerEditor/visual.net/Packaging/*.cer
+
+# ------------------------------------------------------------------------------
+# ## NppShellMsix（MSIX 右键菜单处理器）构建产物
+#    源码在 PowerEditor\src\tools\NppShellMsix\，产物落 bin\ / bin64\ / binarm64\
+#    bin64\ 和 binarm64\ 已整目录忽略，这里只补 bin\ 与工程中间目录
+# ------------------------------------------------------------------------------
+PowerEditor/bin/NppShellMsix.dll
+PowerEditor/bin/NppShellMsix.lib
+PowerEditor/bin/NppShellMsix.exp
+PowerEditor/bin/NppShellMsix.pdb
+PowerEditor/src/tools/NppShellMsix/Win32/
+PowerEditor/src/tools/NppShellMsix/x64/
+PowerEditor/src/tools/NppShellMsix/ARM64/
